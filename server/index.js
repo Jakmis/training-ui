@@ -5,11 +5,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-import clientRoutes from "./routes/client.js"
-import generalRoutes from "./routes/general.js"
-import managementRoutes from "./routes/management.js"
-import salesRoutes from "./routes/sales.js"
-
+import clientRoutes from "./routes/client.js";
+import generalRoutes from "./routes/general.js";
+import managementRoutes from "./routes/management.js";
+import salesRoutes from "./routes/sales.js";
 
 // configuration
 dotenv.config();
@@ -30,10 +29,13 @@ app.use("/sales", salesRoutes);
 
 // mongoose setup
 const PORT = process.env.PORT || 9000;
-mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.set("strictQuery", true);
+mongoose
+  .connect(process.env.MONGODB_URL, {
     // useNewParser: false,
     useUnifiedTopology: false,
-}).then(() => {
+  })
+  .then(() => {
     app.listen(PORT, () => console.log("Server Port: " + PORT));
-}).catch((error) => console.log("Error: " + error))
+  })
+  .catch((error) => console.log("Error: " + error));
